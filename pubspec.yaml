@@ -1,8 +1,8 @@
 name: flutter_jk
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: kim,jong-kook <kjk15881588@gmail.com>
+homepage: https://github.com/smok95/flutter_jk
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -21,7 +21,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  
+  uses-material-design: true
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
