@@ -49,8 +49,21 @@ class IconTextButton extends StatelessWidget {
   /// If this is set to null, the button will be disabled.
   final VoidCallback onPressed;
 
+  /// Whether the button is enabled or disabled.
+  ///
+  /// Buttons are disabled by default. To enable a button, set its [onPressed]
+  /// properties to a non-null value.
+  bool get enabled => onPressed != null;
+
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    Color iconColor;
+    Color textColor;
+    if (onPressed == null) {
+      textColor = iconColor = theme.disabledColor;
+    }
+
     return Expanded(
         child: InkWell(
             onTap: this.onPressed,
@@ -58,8 +71,17 @@ class IconTextButton extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(padding: EdgeInsets.all(5.0)),
-                  icon,
-                  Text(text),
+                  IconTheme.merge(
+                    data: IconThemeData(
+                      //size: iconSize,
+                      color: iconColor,
+                    ),
+                    child: icon,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(color: textColor),
+                  ),
                   Padding(padding: EdgeInsets.all(5.0)),
                 ],
               ),
