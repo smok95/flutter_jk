@@ -1,3 +1,7 @@
+## 0.1.1 - 2020-10-19
+### Fixed
+- poland locale 이름 수정
+
 ## 0.1.0 - 2020-10-18
 ### Added
 - get package 추가

@@ -102,7 +102,7 @@ class GetxMessages extends Translations {
       'show example noise level': '소음수준 비교정보 표시',
       'vibrate': '진동 알림',
     },
-    'pl_PO': {
+    'pl_PL': {
       // Polish
       'app info': 'Informacje o aplikacji',
       'average': 'AVG',
