@@ -1,3 +1,10 @@
+## 0.1.2 - 2020-11-01
+### Changed
+- KrUtils.numberToManwon suffix 인자 추가
+
+### Added
+- 소득세계산(IncomeTaxCalc) 추가
+
 ## 0.1.1 - 2020-10-19
 ### Fixed
 - poland locale 이름 수정

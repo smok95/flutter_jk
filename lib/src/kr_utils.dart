@@ -9,7 +9,7 @@ class KrUtils {
   /// print('결과=$result');
   /// // 결과=1억9500만원
   /// ```
-  static numberToManwon(final int value) {
+  static numberToManwon(final int value, {String suffix = '원'}) {
     int won = 0; // 원
     int manWon = 0; // 만원
     int eogWon = 0; // 억원
@@ -47,7 +47,7 @@ class KrUtils {
     if (manWon > 0) result += '$manWon만';
     if (won > 0) result += '$won';
     if (result.length == 0) result = '0';
-    result += '원';
+    result += suffix;
     return result;
   }
 }
