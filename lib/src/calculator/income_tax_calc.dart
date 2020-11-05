@@ -14,13 +14,18 @@ enum OtherIncomeType {
 /// IncomeTaxCalc
 /// 2020-11-01 IncometaxTable에서 IncomeTaxCalc로 이름 변겯
 class IncomeTaxCalc {
+  /// 계산기준일
+  final DateTime baseDate;
+
+  IncomeTaxCalc({DateTime baseDate}) : baseDate = baseDate ?? DateTime.now();
+
   /// 근로소득세 확인
   /// [income]에 월급여액(단위:원)을
   /// [dependents]에 공제대상가족수를 입력한다.
   /// 공제대상가족수는 본인포함 부양가족+20세 이하 자녀수
   /// [taxRate] 세율 80%(0.8), 100%(1.0). 120%(1.2) 중 입력
   /// Returns 입력값이 비정싱인 경우 -1이 리턴됨.
-  static int calc(int income, int dependents, {double taxRate = 1.0}) {
+  int calc(int income, int dependents, {double taxRate = 1.0}) {
     int tax = _IncomeTaxTable2020().calc(income, dependents);
 
     // 선택세율 적용
@@ -32,7 +37,7 @@ class IncomeTaxCalc {
 
   /// 지방소득세 계산
   /// 소득세값을 [incomeTax]에 설정한다.
-  static int calcLocalIncomeTax(int incomeTax) {
+  int calcLocalIncomeTax(int incomeTax) {
     final localIncomeTax = incomeTax ~/ 10;
     // 원단위 절사
     return (localIncomeTax ~/ 10) * 10;
@@ -40,7 +45,7 @@ class IncomeTaxCalc {
 
   /// 주민세 계산
   /// 소득세값[incomeTax]을 입력한다.
-  static int calcResidentTax(int incomeTax) {
+  int calcResidentTax(int incomeTax) {
     final residentTax = incomeTax ~/ 10;
     // 원단위 절사
     return (residentTax ~/ 10) * 10;
@@ -51,7 +56,7 @@ class IncomeTaxCalc {
   /// [https://www.nts.go.kr/support/support_03.asp?cinfo_key=MINF4920100726151013]
   /// 기타소득액[income]을 입력한다.
   /// 기타소득금액= 총수입금액 - 필요경비
-  static int calcOtherIncomeTax(int income,
+  int calcOtherIncomeTax(int income,
       {OtherIncomeType type = OtherIncomeType.normal}) {
     // 과세최저한 : 건별 5만원 이하는 과세안함.
     // 상세정보 : https://www.nts.go.kr/support/support_view.asp?cinfo_key=MINF4920100726151013&cbsinfo_key=MBS20200527135739127&menu_a=30&menu_b=200&menu_c=3000
@@ -64,12 +69,29 @@ class IncomeTaxCalc {
     var tax = 0;
     switch (type) {
       case OtherIncomeType.lottery:
-        // 복권 20% (3억 초과분은 30% 적용)
-        const threeEuk = 300000000;
+        final ymd20040101 = DateTime(2004, 1, 1);
+        final ymd20070101 = DateTime(2007, 1, 1);
 
-        if (income > threeEuk) {
-          tax += ((income - threeEuk) * 0.3).toInt();
-          income = threeEuk;
+        /// 세금 30% 적용되는 시작 당첨금
+        var startPrizeTax30 = 0;
+
+        if (baseDate.isBefore(ymd20040101)) {
+          // 04.1.1일 이전
+          // 복권 20%
+          startPrizeTax30 = income;
+        } else if (baseDate.isBefore(ymd20070101)) {
+          // 07.1.1일 이전
+          // 복권 20% (5억 초과분은 30% 적용)
+          startPrizeTax30 = 500000000;
+        } else {
+          // 07.1.1일 부터
+          // 복권 20% (3억 초과분은 30% 적용)
+          startPrizeTax30 = 300000000;
+        }
+
+        if (income > startPrizeTax30) {
+          tax += ((income - startPrizeTax30) * 0.3).toInt();
+          income = startPrizeTax30;
         }
 
         tax += (income * 0.2).toInt();

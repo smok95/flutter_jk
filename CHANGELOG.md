@@ -1,3 +1,9 @@
+## 1.0.0 - 2020-11-05
+### Chnaged
+- IncomeTaxCalc 사용방식 변경
+### Added
+- IncomeTaxCalc 계산기준일 추가
+
 ## 0.1.2 - 2020-11-01
 ### Changed
 - KrUtils.numberToManwon suffix 인자 추가
