@@ -106,7 +106,8 @@ class IncomeTaxCalc {
         break;
     }
 
-    return tax;
+    // 원단위 절사
+    return (tax ~/ 10) * 10;
   }
 }
 
