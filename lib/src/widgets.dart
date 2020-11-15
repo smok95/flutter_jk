@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+export 'num_stepper.dart';
+
 /// 모든 모서리가 둥글게 처리된 BoxDecoration
 class RoundBoxDecoration extends BoxDecoration {
   RoundBoxDecoration({
