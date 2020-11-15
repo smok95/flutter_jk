@@ -175,6 +175,17 @@ class _IncomeTaxTable2020 {
       return table[row][col] + additionalTax;
     }
   }
+
+  String get incomeTaxHelpText {
+    return '공제대상가족의 수(부양가족수 + 20세 이하 자녀수)에 따라, ' +
+        '2020년 국세청 근로소득 간이세액표를 기준으로 공제됩니다.' +
+        '\n단, 연간 소득이 100만원을 초과하는 자는 부양가족 및 20세 이하 자녀에서 제외됩니다.\n' +
+        '또한 월급여가 106만원 미만인 경우에는 근로소득세가 없습니다.';
+  }
+
+  String get localIncomeTaxHelpText {
+    return '근로소득세의 10%';
+  }
 }
 
 /// 2020년 근로소득 간이세액표(단위:원 )
