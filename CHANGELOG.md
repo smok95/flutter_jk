@@ -1,3 +1,7 @@
+## 1.2.0 - 2020-11-16
+### Added
+- Add NumberButtonBar widget
+
 ## 1.1.0 - 2020-11-15
 ### Added
 - Add NumStepper widget
