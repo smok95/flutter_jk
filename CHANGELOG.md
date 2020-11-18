@@ -1,3 +1,10 @@
+## 1.3.0 - 2020-11-19
+### Added
+- Add PermissionManager.checkAndRequestStorate
+
+### Changed
+- PermissionManager 내부 구현 개선
+
 ## 1.2.0 - 2020-11-16
 ### Added
 - Add NumberButtonBar widget
