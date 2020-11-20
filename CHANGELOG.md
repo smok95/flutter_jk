@@ -1,4 +1,11 @@
-## 1.3.0 - 2020-11-19
+## Unreleased - 
+
+## 1.4.0 - 2020-11-18
+### Added
+- 번역 일부 추가
+- KrUtils.numberToManwon 1000단위 comma 표시 기능 추가
+
+## 1.3.0 - 2020-11-18
 ### Added
 - Add PermissionManager.checkAndRequestStorate
 

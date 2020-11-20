@@ -16,6 +16,7 @@ class GetxMessages extends Translations {
     'en_US': {
       'app info': 'About this app',
       'average': 'AVG',
+      'cancel': 'Cancel',
       'copy': 'Copy',
       'dark mode': 'Dark Mode',
       'decibel0 example': 'Threshold of hearing',
@@ -39,6 +40,7 @@ class GetxMessages extends Translations {
       'maximum': 'MAX',
       'minimum': 'MIN',
       'more apps': 'More apps',
+      'ok': 'Ok',
       'open': 'OPEN',
       'open settings': 'OPEN SETTINGS',
       'pause': 'Pause',
@@ -61,6 +63,7 @@ class GetxMessages extends Translations {
     'ko_KR': {
       'app info': '앱 정보',
       'average': '평균',
+      'cancel': '취소',
       'copy': '복사',
       'dark mode': '야간 모드',
       'decibel0 example': '가청한계',
@@ -84,6 +87,7 @@ class GetxMessages extends Translations {
       'maximum': '최대',
       'minimum': '최소',
       'more apps': '다른 앱 보기',
+      'ok': '확인',
       'open': '열기',
       'open settings': '설정 열기',
       'pause': '일시정지',
@@ -106,6 +110,7 @@ class GetxMessages extends Translations {
       // Polish
       'app info': 'Informacje o aplikacji',
       'average': 'AVG',
+      'cancel': 'Anuluj',
       'copy': 'Kopiuj',
       'dark mode': 'tryb ciemny',
       'decibel0 example': 'teoretyczny próg słyszenia',
@@ -130,6 +135,7 @@ class GetxMessages extends Translations {
       'maximum': 'MAX',
       'minimum': 'MIN',
       'more apps': 'Więcej aplikacji',
+      'ok': 'Ok',
       'open': 'Otwarte',
       'open settings': 'Otwórz ustawienia',
       'pause': 'Pauza',
