@@ -1,5 +1,9 @@
 ## Unreleased - 
 
+## 1.4.1 - 2020-11-21
+### Changed
+- 외부 Package는 export 하지 않도록 수정
+
 ## 1.4.0 - 2020-11-18
 ### Added
 - 번역 일부 추가
