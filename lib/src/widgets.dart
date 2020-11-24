@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 export 'num_stepper.dart';
+export 'num_pad.dart';
+export 'money_masked_text_controller.dart';
 
 /// 모든 모서리가 둥글게 처리된 BoxDecoration
 class RoundBoxDecoration extends BoxDecoration {
@@ -91,6 +93,19 @@ class IconTextButton extends StatelessWidget {
   }
 }
 
+class NumberButtonItem {
+  /// 숫자값
+  num value;
+
+  /// 화면에 표시할 text
+  final String text;
+  final Key key;
+
+  NumberButtonItem(this.value, this.text, {this.key})
+      : assert(value != null && !value.isNaN),
+        assert(text != null && text.length > 0);
+}
+
 /// 양수/음수 입력 버튼바
 ///
 /// 계산기에서 금액 단위별로 빠르게 입력할 수 있도록 구현한 위젯
@@ -102,21 +117,17 @@ class IconTextButton extends StatelessWidget {
 class NumberButtonBar extends StatefulWidget {
   final Color borderColor;
 
-  /// 각각의 숫자버튼 뒤에 붙일 문자열
-  final String suffix;
-
   final EdgeInsetsGeometry padding;
 
   /// 버튼 클릭 이벤트
-  final ValueChanged<num> onPressed;
+  final ValueChanged<NumberButtonItem> onPressed;
 
   /// 화면에 표시할 입력 숫자 리스트
-  final List<num> numbers;
+  final List<NumberButtonItem> numbers;
 
   NumberButtonBar(this.numbers,
       {Key key,
       this.borderColor = const Color(0xFFEEEEEE),
-      this.suffix,
       this.onPressed,
       this.padding = const EdgeInsets.only(top: 5)})
       : assert(numbers != null && numbers.length > 0),
@@ -155,9 +166,8 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
           }),
     );
 
-    children.addAll(widget.numbers
-        .map((e) => _buildEasyMoneyButton(_plusMode ? e : -e))
-        .toList());
+    children
+        .addAll(widget.numbers.map((e) => _buildEasyMoneyButton(e)).toList());
 
     return Container(
       padding: widget.padding,
@@ -171,10 +181,9 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
     );
   }
 
-  Widget _buildEasyMoneyButton(int unit) {
-    final absValue = unit.abs();
-    final text = '${absValue}${widget.suffix}';
-    final iconData = unit < 0 ? Icons.remove : Icons.add;
+  Widget _buildEasyMoneyButton(NumberButtonItem item) {
+    item.value = _plusMode ? item.value.abs() : -item.value.abs();
+    final iconData = item.value < 0 ? Icons.remove : Icons.add;
     const radius = const Radius.circular(5.0);
     final size = 15.0;
     return InkWell(
@@ -184,13 +193,13 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
         child: Row(
           children: [
             Icon(iconData, size: size),
-            Text(text, style: TextStyle(fontSize: size))
+            Text(item.text, style: TextStyle(fontSize: size))
           ],
         ),
       ),
       onTap: () {
         if (widget.onPressed != null) {
-          widget.onPressed(unit);
+          widget.onPressed(item);
         }
       },
     );

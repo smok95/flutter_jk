@@ -1,4 +1,28 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+# 버전 예외사항 - 2020-11-24
+현재 버전 번호는 semver규칙에 따라 처리하고 있으나, 잦은 기능 변경으로 주버전이
+마구 올라갈 것으로 예상됨.
+따라서 주버전은 현재 번호 1로 고정하고 부버전을 주버전 수버전을 부/수버전으로
+임시 변경한다.
+
+추후 패키지가 안정화되면, 현재 임시로 명한 flutter_jk도 변경하고
+버전번호도 정상적으로 처리한다.
+
+
 ## Unreleased - 
+
+## 1.5.0 - 2020-11-24
+### Changed
+- NumberButtonBar 사용방식 변경
+
+### Added
+- NumPad widget 추가
+- MoneyMaskedTextController 추가
 
 ## 1.4.1 - 2020-11-21
 ### Changed
