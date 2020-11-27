@@ -208,3 +208,51 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
   /// +/- 모드
   bool _plusMode = true;
 }
+
+/// A Simple options dialog.
+///
+/// ```dart
+/// Map<String, dynamic> options = {
+///   'option1': 1,
+///   'option2': 2,
+/// };
+///
+/// showOptionsDialog(context: context, options: options).then((value){
+///   print(value);
+/// });
+/// ```
+Future<dynamic> showOptionsDialog({
+  Key key,
+  @required BuildContext context,
+  @required Map<String, dynamic> options,
+  Widget title,
+  EdgeInsetsGeometry titlePadding =
+      const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+  TextStyle titleTextStyle,
+  EdgeInsetsGeometry contentPadding =
+      const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 16.0),
+  Color backgroundColor,
+  double elevation,
+  String semanticLabel,
+  ShapeBorder shape,
+}) async {
+  return await showDialog(
+    context: context,
+    builder: (context) => SimpleDialog(
+        title: title,
+        key: key,
+        titlePadding: titlePadding,
+        titleTextStyle: titleTextStyle,
+        contentPadding: contentPadding,
+        backgroundColor: backgroundColor,
+        elevation: elevation,
+        semanticLabel: semanticLabel,
+        shape: shape,
+        children: options.entries
+            .map((e) => SimpleDialogOption(
+                  child: Text(e.key),
+                  onPressed: () => Navigator.pop(context, e.value),
+                ))
+            .toList(growable: false)),
+  );
+}
