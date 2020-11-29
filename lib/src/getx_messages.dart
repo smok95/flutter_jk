@@ -35,6 +35,7 @@ class GetxMessages extends Translations {
       'error': 'Error',
       'flashlight': 'Flashlight',
       'google url': 'www.google.com',
+      'installed date': 'Installed',
       'keep the device awake': 'Keep the device awake',
       'keep the screen on': 'Keep the screen on',
       'maximum': 'MAX',
@@ -43,6 +44,7 @@ class GetxMessages extends Translations {
       'ok': 'Ok',
       'open': 'OPEN',
       'open settings': 'OPEN SETTINGS',
+      'open website automatically': 'Open website automatically',
       'pause': 'Pause',
       'permission denied': 'Permission denied',
       'please allow permission':
@@ -58,7 +60,9 @@ class GetxMessages extends Translations {
       'share': 'Share',
       'share app': 'Share App',
       'show example noise level': 'Show the example noise level',
+      'updated date': 'Updated',
       'vibrate': 'Vibrate',
+      'view code': 'View code',
     },
     'ko_KR': {
       'app info': '앱 정보',
@@ -82,6 +86,7 @@ class GetxMessages extends Translations {
       'error': '오류',
       'flashlight': '손전등',
       'google url': 'www.google.co.kr',
+      'installed date': '설치 일자',
       'keep the device awake': '기기를 켜진 상태로 유지',
       'keep the screen on': '화면을 켜진 상태로 유지',
       'maximum': '최대',
@@ -90,6 +95,7 @@ class GetxMessages extends Translations {
       'ok': '확인',
       'open': '열기',
       'open settings': '설정 열기',
+      'open website automatically': '웹사이트 자동으로 열기',
       'pause': '일시정지',
       'permission denied': '권한 없음',
       'please allow permission': '권한이 없어 해당 기능을 사용할 수 없습니다. 앱 설정에서 권한을 허용해주세요.',
@@ -104,7 +110,9 @@ class GetxMessages extends Translations {
       'share': '공유',
       'share app': '앱 공유하기',
       'show example noise level': '소음수준 비교정보 표시',
+      'updated date': '업데이트 일자',
       'vibrate': '진동 알림',
+      'view code': '코드 보기',
     },
     'pl_PL': {
       // Polish
@@ -130,6 +138,7 @@ class GetxMessages extends Translations {
       'error': 'Błąd',
       'flashlight': 'Latarka',
       'google url': 'www.google.pl',
+      'installed date': 'Installed',
       'keep the device awake': 'Keep the device awake',
       'keep the screen on': 'Zachowaj ekran włączony',
       'maximum': 'MAX',
@@ -138,6 +147,7 @@ class GetxMessages extends Translations {
       'ok': 'Ok',
       'open': 'Otwarte',
       'open settings': 'Otwórz ustawienia',
+      'open website automatically': 'Open website automatically',
       'pause': 'Pauza',
       'permission denied': 'Brak uprawnień',
       'please allow permission':
@@ -153,7 +163,9 @@ class GetxMessages extends Translations {
       'share': 'Dzielić',
       'share app': 'Share App',
       'show example noise level': 'Show the example noise level',
+      'updated date': 'Updated',
       'vibrate': 'Vibrate',
+      'view code': 'View code',
     },
   };
 }
