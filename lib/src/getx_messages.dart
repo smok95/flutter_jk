@@ -15,6 +15,7 @@ class GetxMessages extends Translations {
   Map<String, Map<String, String>> _messages = {
     'en_US': {
       'app info': 'About this app',
+      'Are you sure you want to exit?': 'Are you sure you want to exit?',
       'average': 'AVG',
       'cancel': 'Cancel',
       'close': 'Close',
@@ -69,6 +70,7 @@ class GetxMessages extends Translations {
       'view code': 'View code',
     },
     'ko_KR': {
+      'Are you sure you want to exit?': '종료하시겠습니까?',
       'app info': '앱 정보',
       'average': '평균',
       'cancel': '취소',
@@ -124,6 +126,7 @@ class GetxMessages extends Translations {
     },
     'pl_PL': {
       // Polish
+      'Are you sure you want to exit?': 'Are you sure you want to exit?',
       'app info': 'Informacje o aplikacji',
       'average': 'AVG',
       'cancel': 'Anuluj',
