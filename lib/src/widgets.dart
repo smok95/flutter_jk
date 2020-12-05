@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 export 'num_stepper.dart';
 export 'num_pad.dart';
 export 'money_masked_text_controller.dart';
+export 'single_touch_dectector.dart';
 
 /// 모든 모서리가 둥글게 처리된 BoxDecoration
 class RoundBoxDecoration extends BoxDecoration {
