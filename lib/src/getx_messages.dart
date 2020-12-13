@@ -15,6 +15,8 @@ class GetxMessages extends Translations {
   Map<String, Map<String, String>> _messages = {
     'en_US': {
       'app info': 'About this app',
+      'Are you sure you want to clear history?':
+          'Are you sure you want to clear history?',
       'Are you sure you want to exit?': 'Are you sure you want to exit?',
       'average': 'AVG',
       'cancel': 'Cancel',
@@ -37,6 +39,7 @@ class GetxMessages extends Translations {
       'error': 'Error',
       'flashlight': 'Flashlight',
       'google url': 'www.google.com',
+      'Information': 'Information',
       'installed date': 'Installed',
       'keep the device awake': 'Keep the device awake',
       'keep the screen on': 'Keep the screen on',
@@ -53,10 +56,12 @@ class GetxMessages extends Translations {
       'permission denied': 'Permission denied',
       'please allow permission':
           'Necessary permissions are denied. Please allow in Settings.',
+      'Purchase History': 'Purchase History',
       'rate review': 'Rate 5 stars',
       'remove': 'Remove',
       'resume': 'Resume',
       'reset': 'Reset',
+      'Scan History': 'Scan History',
       'scan result': 'Scan Result',
       'screenshot': 'Screenshot',
       'screenshot saved': 'Screenshot saved',
@@ -70,6 +75,7 @@ class GetxMessages extends Translations {
       'view code': 'View code',
     },
     'ko_KR': {
+      'Are you sure you want to clear history?': '정말 모든 기록을 삭제하시겠습니까?',
       'Are you sure you want to exit?': '종료하시겠습니까?',
       'app info': '앱 정보',
       'average': '평균',
@@ -93,6 +99,7 @@ class GetxMessages extends Translations {
       'error': '오류',
       'flashlight': '손전등',
       'google url': 'www.google.co.kr',
+      'Information': '정보',
       'installed date': '설치 일자',
       'keep the device awake': '기기를 켜진 상태로 유지',
       'keep the screen on': '화면을 켜진 상태로 유지',
@@ -108,10 +115,12 @@ class GetxMessages extends Translations {
       'pause': '일시정지',
       'permission denied': '권한 없음',
       'please allow permission': '권한이 없어 해당 기능을 사용할 수 없습니다. 앱 설정에서 권한을 허용해주세요.',
+      'Purchase History': '구매내역',
       'rate review': '별점주기',
       'remove': '삭제',
       'resume': '재시작',
       'reset': '초기화',
+      'Scan History': '스캔 내역',
       'scan result': '스캔 결과',
       'screenshot': '화면캡쳐',
       'screenshot saved': '화면캡쳐 성공',
@@ -126,6 +135,8 @@ class GetxMessages extends Translations {
     },
     'pl_PL': {
       // Polish
+      'Are you sure you want to clear history?':
+          'Czy na pewno chcesz usunąć wszystkie przedmioty?',
       'Are you sure you want to exit?': 'Are you sure you want to exit?',
       'app info': 'Informacje o aplikacji',
       'average': 'AVG',
@@ -150,6 +161,7 @@ class GetxMessages extends Translations {
       'error': 'Błąd',
       'flashlight': 'Latarka',
       'google url': 'www.google.pl',
+      'Information': 'Informacje',
       'installed date': 'Installed',
       'keep the device awake': 'Keep the device awake',
       'keep the screen on': 'Zachowaj ekran włączony',
@@ -166,11 +178,13 @@ class GetxMessages extends Translations {
       'permission denied': 'Brak uprawnień',
       'please allow permission':
           'Necessary permissions are denied. Please allow in Settings.',
+      'Purchase History': 'Historia zakupów',
       'rate review': 'Rate 5 stars',
       'remove': 'Usuń',
       'resume': 'Resume',
       'reset': 'Resetuj',
-      'scan result': 'Scan Result',
+      'Scan History': 'Scan Historia',
+      'scan result': 'Scan Rezultat',
       'screenshot': 'Zrzut ekranu',
       'screenshot saved': 'Screenshot saved',
       'search': 'szukanie',
