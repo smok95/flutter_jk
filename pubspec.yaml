@@ -1,6 +1,6 @@
 name: flutter_jk
 description: flutter_jk package project.
-version: 1.5.5
+version: 1.6.0
 author: kim,jong-kook <kjk15881588@gmail.com>
 homepage: https://github.com/smok95/flutter_jk
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   permission_handler: ^5.0.1+1
-  get: ^3.13.2
+  get: ^4.1.4
 
 
 dev_dependencies:
