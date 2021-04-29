@@ -16,7 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
-## 1.6.0 - 2021-04024
+## 1.6.1 - 2021-04-29
+### Added
+- income_tax_calc 속성 추가
+
+## 1.6.0 - 2021-04-24
 ### Changed
 - get: ^3.13.2 > get: ^4.1.4
 
