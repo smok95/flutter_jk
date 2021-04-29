@@ -12,7 +12,8 @@ enum OtherIncomeType {
 }
 
 /// IncomeTaxCalc
-/// 2020-11-01 IncometaxTable에서 IncomeTaxCalc로 이름 변겯
+/// 2020-11-01 IncometaxTable에서 IncomeTaxCalc로 이름 변경
+/// 2021-04-29 각 메서드에서 별도로 기준년도 설정하지 않고 baseDate사용하도록 변경
 class IncomeTaxCalc {
   /// 계산기준일
   final DateTime baseDate;
@@ -111,10 +112,9 @@ class IncomeTaxCalc {
   }
 
   /// 근로소득세 도움말
-  /// 기준년도를 [year]에 입력
   /// 현재는 2020년 정보만 있음
-  String incomeTaxHelpText(int year) {
-    if (year == 2020) {
+  String incomeTaxHelpText() {
+    if (baseDate.year == 2020) {
       return _IncomeTaxTable2020().incomeTaxHelpText;
     }
 
@@ -122,8 +122,9 @@ class IncomeTaxCalc {
   }
 
   /// 지방소득세 도움말
-  String localIncomeTaxHelpText(int year) {
-    if (year == 2020) return _IncomeTaxTable2020().localIncomeTaxHelpText;
+  String localIncomeTaxHelpText() {
+    if (baseDate.year == 2020)
+      return _IncomeTaxTable2020().localIncomeTaxHelpText;
     return _IncomeTaxTable2020().localIncomeTaxHelpText;
   }
 }
