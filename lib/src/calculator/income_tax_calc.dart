@@ -109,6 +109,23 @@ class IncomeTaxCalc {
     // 원단위 절사
     return (tax ~/ 10) * 10;
   }
+
+  /// 근로소득세 도움말
+  /// 기준년도를 [year]에 입력
+  /// 현재는 2020년 정보만 있음
+  String incomeTaxHelpText(int year) {
+    if (year == 2020) {
+      return _IncomeTaxTable2020().incomeTaxHelpText;
+    }
+
+    return _IncomeTaxTable2020().incomeTaxHelpText;
+  }
+
+  /// 지방소득세 도움말
+  String localIncomeTaxHelpText(int year) {
+    if (year == 2020) return _IncomeTaxTable2020().localIncomeTaxHelpText;
+    return _IncomeTaxTable2020().localIncomeTaxHelpText;
+  }
 }
 
 class _IncomeTaxTable2020 {
