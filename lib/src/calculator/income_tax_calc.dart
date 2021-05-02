@@ -39,7 +39,7 @@ class IncomeTaxCalc {
   /// [taxRate] 세율 80%(0.8), 100%(1.0). 120%(1.2) 중 입력
   /// Returns 입력값이 비정싱인 경우 -1이 리턴됨.
   int calc(int income, int dependents, {double taxRate = 1.0}) {
-    int tax = _Calc2020().calc(income, dependents);
+    int tax = _calculator.calc(income, dependents);
 
     // 선택세율 적용
     tax = (tax.toDouble() * taxRate).toInt();
