@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## Unreleased - 
+
+## 1.8.0 - 2021-05-02
+### Added
+- IncomeTaxCalc 2021년 기준 추가
+
+### Changed
+- IncomeTaxCalc 사용방법 변경
+
 ## 1.7.0 - 2021-04-29
 ### Changed
 - IncomeTaxCalc 기준년도 함수보다 별도로 인자로 받지 않도록 변경
