@@ -19,7 +19,7 @@ class PermissionManager {
 
   static Future<bool> _checkAndRequestPermission(Permission p) async {
     var status = await p.status;
-    if (status.isUndetermined || status.isDenied) {
+    if (status.isDenied || status.isLimited) {
       status = await p.request();
     }
 

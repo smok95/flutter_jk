@@ -20,7 +20,7 @@ class IncomeTaxCalc {
   /// 계산기준일
   final DateTime baseDate;
 
-  IncomeTaxCalc({DateTime baseDate})
+  IncomeTaxCalc({DateTime? baseDate})
       : this.baseDate = baseDate ?? DateTime.now() {
     final ymd20210218 = DateTime(2021, 2, 18);
 
@@ -128,7 +128,7 @@ class IncomeTaxCalc {
     return _calculator.helpText(key);
   }
 
-  IncomeTaxCalculator _calculator;
+  late IncomeTaxCalculator _calculator;
 }
 
 abstract class IncomeTaxCalculator {
@@ -145,7 +145,7 @@ class _Calc2020 extends IncomeTaxCalculator {
     int col = dependents - 1;
     int additionalTax = 0;
 
-    List<List<int>> table;
+    late List<List<int>> table;
     if (salary < 1000) {
       // 100만원 미만
       return 0;
@@ -210,10 +210,8 @@ class _Calc2020 extends IncomeTaxCalculator {
             '2020년 국세청 근로소득 간이세액표를 기준으로 공제됩니다.' +
             '\n단, 연간 소득이 100만원을 초과하는 자는 부양가족 및 20세 이하 자녀에서 제외됩니다.\n' +
             '또한 월급여가 106만원 미만인 경우에는 근로소득세가 없습니다.';
-        break;
       case 'local-income-tax':
         return '근로소득세의 10%';
-        break;
       default:
         return '';
     }
@@ -229,7 +227,7 @@ class _Calc2021 extends IncomeTaxCalculator {
     int col = dependents - 1;
     int additionalTax = 0;
 
-    List<List<int>> table;
+    late List<List<int>> table;
     if (salary < 1000) {
       // 100만원 미만
       return 0;
@@ -298,10 +296,8 @@ class _Calc2021 extends IncomeTaxCalculator {
             '2021년 국세청 근로소득 간이세액표를 기준으로 공제됩니다.' +
             '\n단, 연간 소득이 100만원을 초과하는 자는 부양가족 및 7세 이상 20세 이하 자녀에서 제외됩니다.\n' +
             '또한 월급여가 106만원 미만인 경우에는 근로소득세가 없습니다.';
-        break;
       case 'local-income-tax':
         return '근로소득세의 10%';
-        break;
       default:
         return '';
     }

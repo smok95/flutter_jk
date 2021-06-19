@@ -12,9 +12,10 @@ enum StepperAlignment {
   between,
 }
 
+// ignore: must_be_immutable
 class NumStepper extends StatefulWidget {
   NumStepper(
-      {Key key,
+      {Key? key,
       this.value = 0,
       this.step = 1,
       this.alignment = StepperAlignment.end,
@@ -30,10 +31,10 @@ class NumStepper extends StatefulWidget {
   _NumStepperState createState() => _NumStepperState();
 
   /// 최소값
-  final num minimum;
+  final num? minimum;
 
   /// 최대값
-  final num maximum;
+  final num? maximum;
 
   /// 단위
   final num step;
@@ -43,9 +44,9 @@ class NumStepper extends StatefulWidget {
 
   /// [value] 오른쪽에 표시할 문자열
   final String rightSymbol;
-  final TextStyle textStyle;
-  final double width;
-  final ValueChanged<int> onChanged;
+  final TextStyle? textStyle;
+  final double? width;
+  final ValueChanged<int?>? onChanged;
   final StepperAlignment alignment;
 }
 
@@ -54,15 +55,15 @@ class _NumStepperState extends State<NumStepper> {
   void initState() {
     super.initState();
 
-    if (widget.minimum != null && widget.minimum > widget.value) {
-      widget.value = widget.minimum;
-    } else if (widget.maximum != null && widget.maximum < widget.value) {
-      widget.value = widget.maximum;
+    if (widget.minimum != null && widget.minimum! > widget.value) {
+      widget.value = widget.minimum!;
+    } else if (widget.maximum != null && widget.maximum! < widget.value) {
+      widget.value = widget.maximum!;
     }
   }
 
   Widget _iconButton(IconData data, void Function() onPressed) {
-    final decoration = null;
+    final dynamic decoration = null;
     /*BoxDecoration(
         color: Colors.amberAccent,
         borderRadius: BorderRadius.all(Radius.circular(10.0)));*/
@@ -73,8 +74,8 @@ class _NumStepperState extends State<NumStepper> {
       child: IconButton(
           icon: Icon(data),
           padding: EdgeInsets.all(5),
-          splashRadius: widget.textStyle.fontSize * 1.3,
-          iconSize: widget.textStyle.fontSize * 1.3,
+          splashRadius: widget.textStyle!.fontSize! * 1.3,
+          iconSize: widget.textStyle!.fontSize! * 1.3,
           constraints: BoxConstraints.tightForFinite(),
           focusColor: Colors.transparent,
           highlightColor: Colors.amber,
@@ -86,8 +87,8 @@ class _NumStepperState extends State<NumStepper> {
     setState(() {
       widget.value -= widget.step;
 
-      if (widget.minimum != null && widget.minimum > widget.value) {
-        widget.value = widget.minimum;
+      if (widget.minimum != null && widget.minimum! > widget.value) {
+        widget.value = widget.minimum!;
       }
 
       _fireOnChanged(widget.value);
@@ -98,23 +99,23 @@ class _NumStepperState extends State<NumStepper> {
     setState(() {
       widget.value += widget.step;
 
-      if (widget.maximum != null && widget.maximum < widget.value) {
-        widget.value = widget.maximum;
+      if (widget.maximum != null && widget.maximum! < widget.value) {
+        widget.value = widget.maximum!;
       }
 
       _fireOnChanged(widget.value);
     });
   }
 
-  void _fireOnChanged(num value) {
-    if (widget.onChanged != null) widget.onChanged(value);
+  void _fireOnChanged(num? value) {
+    if (widget.onChanged != null) widget.onChanged!(value as int?);
   }
 
   @override
   Widget build(BuildContext context) {
     final style = widget.textStyle ?? TextStyle(fontSize: 24.0);
 
-    List<Widget> children = List<Widget>();
+    List<Widget> children = [];
 
     final plusButton = _iconButton(Icons.add, _increase);
     final minusButton = _iconButton(Icons.remove, _decrease);

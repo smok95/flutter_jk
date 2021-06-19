@@ -75,14 +75,14 @@ class MoneyMaskedTextController extends TextEditingController {
 
     final ch = number.toString();
     if (selection.start >= 0) {
-      final length = text?.length ?? 0;
+      final length = text.length;
 
       /// 맨앞에 0을 추가하는 경우
       if (ch == '0' && selection.start == 0 && length > 0) return false;
 
       int newPosition = selection.start + ch.length;
 
-      final thousandSepLength = thousandSeparator?.length ?? 0;
+      final thousandSepLength = thousandSeparator.length;
       text = text.replaceRange(selection.start, selection.end, ch);
 
       /// 숫자값 추가 후 thousandSeparator가 추가된 경우
@@ -106,7 +106,7 @@ class MoneyMaskedTextController extends TextEditingController {
     if (selection.start <= 0) return;
 
     int start = selection.start - 1;
-    final thousandSepLen = thousandSeparator?.length ?? 0;
+    final thousandSepLen = thousandSeparator.length;
 
     /// 현재 cursor 오른쪽 글자수
     final rightLength = text.substring(selection.start).length;

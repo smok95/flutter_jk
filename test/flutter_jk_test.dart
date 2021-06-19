@@ -7,7 +7,7 @@ void main() {
     final msgs = GetxMessages();
     final len = msgs.keys.entries.first.value.length;
     for (var key in msgs.keys.keys) {
-      expect(msgs.keys[key].length, len, reason: '언어별로 모든 메시지의 개수는 동일해야함.');
+      expect(msgs.keys[key]!.length, len, reason: '언어별로 모든 메시지의 개수는 동일해야함.');
     }
   });
 }

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 /// NumberPad widget
 ///
 class NumPad extends StatelessWidget {
-  final double height;
+  final double? height;
   final ValueChanged<int> onPressed;
-  final void Function() onClear;
-  final void Function() onBackspace;
+  final void Function()? onClear;
+  final void Function()? onBackspace;
 
   const NumPad(
-      {Key key,
-      @required this.onPressed,
+      {Key? key,
+      required this.onPressed,
       this.height,
       this.onClear,
       this.onBackspace})
@@ -40,15 +40,15 @@ class NumPad extends StatelessWidget {
       this.onPressed(n);
     } else {
       if (value == 'clear' && this.onClear != null) {
-        this.onClear();
+        this.onClear!();
       } else if (value == 'back' && this.onBackspace != null) {
-        this.onBackspace();
+        this.onBackspace!();
       }
     }
   }
 
   Widget _buildButton(final String label) {
-    Widget child = null;
+    Widget child;
     final size = 25.0;
 
     if (label == 'clear') {

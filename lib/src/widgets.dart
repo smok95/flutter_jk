@@ -9,13 +9,13 @@ export 'single_touch_dectector.dart';
 /// 모든 모서리가 둥글게 처리된 BoxDecoration
 class RoundBoxDecoration extends BoxDecoration {
   RoundBoxDecoration({
-    Color color,
-    DecorationImage image,
-    BoxBorder border,
+    Color? color,
+    DecorationImage? image,
+    BoxBorder? border,
     double radius = 10.0,
-    List<BoxShadow> boxShadow,
-    Gradient gradient,
-    BlendMode backgroundBlendMode,
+    List<BoxShadow>? boxShadow,
+    Gradient? gradient,
+    BlendMode? backgroundBlendMode,
   }) : super(
             color: color,
             image: image,
@@ -32,7 +32,7 @@ class RoundBoxDecoration extends BoxDecoration {
 /// jkqrcode/my_icon_button.dart 에서 가져옴.
 /// 추후 jkqrcode도 여기걸로 변경할 것!
 class IconTextButton extends StatelessWidget {
-  IconTextButton(this.icon, this.text, {Key key, this.onPressed})
+  IconTextButton(this.icon, this.text, {Key? key, this.onPressed})
       : super(key: key);
 
   final String text;
@@ -52,7 +52,7 @@ class IconTextButton extends StatelessWidget {
   /// The callback that is called when the button is tapped or otherwise activated.
   ///
   /// If this is set to null, the button will be disabled.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// Whether the button is enabled or disabled.
   ///
@@ -63,8 +63,8 @@ class IconTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    Color iconColor;
-    Color textColor;
+    Color? iconColor;
+    Color? textColor;
     if (onPressed == null) {
       textColor = iconColor = theme.disabledColor;
     }
@@ -100,11 +100,11 @@ class NumberButtonItem {
 
   /// 화면에 표시할 text
   final String text;
-  final Key key;
+  final Key? key;
 
   NumberButtonItem(this.value, this.text, {this.key})
-      : assert(value != null && !value.isNaN),
-        assert(text != null && text.length > 0);
+      : assert(!value.isNaN),
+        assert(text.length > 0);
 }
 
 /// 양수/음수 입력 버튼바
@@ -121,17 +121,17 @@ class NumberButtonBar extends StatefulWidget {
   final EdgeInsetsGeometry padding;
 
   /// 버튼 클릭 이벤트
-  final ValueChanged<NumberButtonItem> onPressed;
+  final ValueChanged<NumberButtonItem>? onPressed;
 
   /// 화면에 표시할 입력 숫자 리스트
   final List<NumberButtonItem> numbers;
 
   NumberButtonBar(this.numbers,
-      {Key key,
+      {Key? key,
       this.borderColor = const Color(0xFFEEEEEE),
       this.onPressed,
       this.padding = const EdgeInsets.only(top: 5)})
-      : assert(numbers != null && numbers.length > 0),
+      : assert(numbers.length > 0),
         super(key: key);
 
   @override
@@ -151,7 +151,7 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
 
   @override
   Widget build(BuildContext context) {
-    final children = List<Widget>();
+    final children = [];
 
     // +/- 버튼
     children.add(
@@ -177,7 +177,7 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
               Border(bottom: BorderSide(color: widget.borderColor, width: 1))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: children,
+        children: children as List<Widget>,
       ),
     );
   }
@@ -200,7 +200,7 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
       ),
       onTap: () {
         if (widget.onPressed != null) {
-          widget.onPressed(item);
+          widget.onPressed!(item);
         }
       },
     );
@@ -223,19 +223,19 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
 /// });
 /// ```
 Future<dynamic> showOptionsDialog({
-  Key key,
-  @required BuildContext context,
-  @required Map<String, dynamic> options,
-  Widget title,
+  Key? key,
+  required BuildContext context,
+  required Map<String, dynamic> options,
+  Widget? title,
   EdgeInsetsGeometry titlePadding =
       const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
-  TextStyle titleTextStyle,
+  TextStyle? titleTextStyle,
   EdgeInsetsGeometry contentPadding =
       const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 16.0),
-  Color backgroundColor,
-  double elevation,
-  String semanticLabel,
-  ShapeBorder shape,
+  Color? backgroundColor,
+  double? elevation,
+  String? semanticLabel,
+  ShapeBorder? shape,
 }) async {
   return await showDialog(
     context: context,

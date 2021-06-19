@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 /// Disable multi-touch
 class SingleTouchDetector extends RawGestureDetector {
   SingleTouchDetector({
-    Key key,
-    Widget child,
+    Key? key,
+    Widget? child,
     bool excludeFromSemantics = false,
     dynamic semantics,
   }) : super(
