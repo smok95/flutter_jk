@@ -151,7 +151,7 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
 
   @override
   Widget build(BuildContext context) {
-    final children = [];
+    final children = <Widget>[];
 
     // +/- 버튼
     children.add(
@@ -177,7 +177,7 @@ class _NumberButtonBarState extends State<NumberButtonBar> {
               Border(bottom: BorderSide(color: widget.borderColor, width: 1))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: children as List<Widget>,
+        children: children,
       ),
     );
   }
