@@ -1,17 +1,17 @@
 name: flutter_jk
 description: flutter_jk package project.
-version: 1.9.1
+version: 1.9.2
 author: kim,jong-kook <kjk15881588@gmail.com>
 homepage: https://github.com/smok95/flutter_jk
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'  
   flutter: ">=1.17.0 <2.0.0"
 
+# https://pub.dev
 dependencies:
   flutter:
     sdk: flutter
-  permission_handler: ^8.1.1
   get: ^4.1.4
 
 
