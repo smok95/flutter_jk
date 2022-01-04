@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## Unreleased - 
+
+## 1.11.0 - 2022-01-04
+### Removed
+- get 패키치 참조 제거
+
+### Changed
+- GetXMessages -> Translations 로 변경
+
 ## 1.10.0 - 2021-10-15
 ### Removed
 - permission_manager 제거, 소스 얼마 되지도 않는데 괜히 어기에 넣었다가 dependency 관리가 더 힘들어서 빼버림.
