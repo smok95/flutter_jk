@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.2 - 2022-02-03
+### Added
+- 4대 보험 계산기 추가
+
 ## 1.11.1 - 2022-01-29
 ### Added
 - PlatformInfo 추가
