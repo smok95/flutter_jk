@@ -8,13 +8,17 @@ class NumPad extends StatelessWidget {
   final void Function()? onClear;
   final void Function()? onBackspace;
 
-  const NumPad(
-      {Key? key,
-      required this.onPressed,
-      this.height,
-      this.onClear,
-      this.onBackspace})
-      : super(key: key);
+  /// Backspace widget, default(Icons.backspace_outlined)
+  final Widget? backspaceWidget;
+
+  const NumPad({
+    Key? key,
+    required this.onPressed,
+    this.height,
+    this.onClear,
+    this.onBackspace,
+    this.backspaceWidget,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +60,12 @@ class NumPad extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: size));
     } else if (label == 'back') {
-      child = Icon(
-        Icons.arrow_back,
-        size: size,
-      );
+      child = backspaceWidget != null
+          ? backspaceWidget!
+          : Icon(
+              Icons.backspace_outlined,
+              size: size,
+            );
     } else {
       child = Text(label,
           textAlign: TextAlign.center,

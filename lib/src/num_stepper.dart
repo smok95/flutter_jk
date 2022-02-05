@@ -23,6 +23,8 @@ class NumStepper extends StatefulWidget {
       this.maximum,
       this.textStyle,
       this.width,
+      this.buttonDecoration,
+      this.buttonColor,
       this.onChanged,
       this.rightSymbol = ''})
       : super(key: key);
@@ -48,6 +50,12 @@ class NumStepper extends StatefulWidget {
   final double? width;
   final ValueChanged<int?>? onChanged;
   final StepperAlignment alignment;
+
+  /// +,- button decoration
+  final Decoration? buttonDecoration;
+
+  /// button foreground color
+  final Color? buttonColor;
 }
 
 class _NumStepperState extends State<NumStepper> {
@@ -63,16 +71,12 @@ class _NumStepperState extends State<NumStepper> {
   }
 
   Widget _iconButton(IconData data, void Function() onPressed) {
-    final dynamic decoration = null;
-    /*BoxDecoration(
-        color: Colors.amberAccent,
-        borderRadius: BorderRadius.all(Radius.circular(10.0)));*/
-
     return Container(
-      decoration: decoration,
+      decoration: widget.buttonDecoration,
       margin: EdgeInsets.all(1.0),
       child: IconButton(
           icon: Icon(data),
+          color: widget.buttonColor,
           padding: EdgeInsets.all(5),
           splashRadius: widget.textStyle!.fontSize! * 1.3,
           iconSize: widget.textStyle!.fontSize! * 1.3,
@@ -128,13 +132,22 @@ class _NumStepperState extends State<NumStepper> {
 
     switch (widget.alignment) {
       case StepperAlignment.start:
-        children..add(minusButton)..add(plusButton)..add(text);
+        children
+          ..add(minusButton)
+          ..add(plusButton)
+          ..add(text);
         break;
       case StepperAlignment.end:
-        children..add(text)..add(minusButton)..add(plusButton);
+        children
+          ..add(text)
+          ..add(minusButton)
+          ..add(plusButton);
         break;
       default:
-        children..add(minusButton)..add(text)..add(plusButton);
+        children
+          ..add(minusButton)
+          ..add(text)
+          ..add(plusButton);
     }
 
     return SizedBox(
