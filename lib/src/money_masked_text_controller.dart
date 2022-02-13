@@ -80,7 +80,10 @@ class MoneyMaskedTextController extends TextEditingController {
       /// 맨앞에 0을 추가하는 경우
       if (ch == '0' && selection.start == 0 && length > 0) return false;
 
-      int newPosition = selection.start + ch.length;
+      int newPosition = selection.start;
+      if (text != '0') {
+        newPosition += ch.length;
+      }
 
       final thousandSepLength = thousandSeparator.length;
       text = text.replaceRange(selection.start, selection.end, ch);

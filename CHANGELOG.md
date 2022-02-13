@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## Unreleased - 
+
+## 1.11.4 - 2022-02-13
+### Fixed
+- MoneyMaskedTextController invalid text selection 오류 수정
+
 ## 1.11.3 - 2022-02-06
 ### Added
 - NumPad, NumStepper 옵션 추가
