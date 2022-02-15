@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.5 - 2022-02-15
+### Fixed
+- MoneyMaskedTextController 1.11.4 수정에 따른 버그 수정
+  캐럿이 0앞에 있을때 숫자입력시 캐럿이 맨 앞으로 위치가 변경되는 현상
+
 ## 1.11.4 - 2022-02-13
 ### Fixed
 - MoneyMaskedTextController invalid text selection 오류 수정

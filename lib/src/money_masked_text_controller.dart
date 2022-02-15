@@ -83,6 +83,12 @@ class MoneyMaskedTextController extends TextEditingController {
       int newPosition = selection.start;
       if (text != '0') {
         newPosition += ch.length;
+      } else {
+        // text값이 '0'이고 number가 0보다 크며 position이 0이면 포지션 변경
+        // |0 <- 이런 상태에서 1~9값 입력시 |20 과 같이 position이 유지되지 않는 현상 수정
+        if (number > 0 && newPosition == 0) {
+          newPosition += ch.length;
+        }
       }
 
       final thousandSepLength = thousandSeparator.length;
