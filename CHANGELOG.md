@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.6 - 2022-03-25
+### Added
+- 고용보험료 22년 7월 변경사항 계산 추가
+
 ## 1.11.5 - 2022-02-15
 ### Fixed
 - MoneyMaskedTextController 1.11.4 수정에 따른 버그 수정

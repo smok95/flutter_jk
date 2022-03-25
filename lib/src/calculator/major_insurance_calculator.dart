@@ -39,6 +39,8 @@ class MajorInsuranceCalculator {
       // 고용보험료 : 1.6% (각각 50%)
       _taxRateEmploymentInsurance = 0.016;
     } else if (year >= 2022) {
+      final ymd20220701 = DateTime(2022, 7, 1);
+
       // 2022년 기존
       // 건강보험료 : 6.99% (근로자: 3.495%, 사업주: 3.495% 부담)
       _taxRateHealthCare = 0.0699;
@@ -46,8 +48,14 @@ class MajorInsuranceCalculator {
       _taxRateLongTermCare = 0.1227;
       // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
       _taxRateNationalPension = 0.09;
-      // 고용보험료 : 1.6% (각각 50%)
-      _taxRateEmploymentInsurance = 0.016;
+
+      if (this.baseDate.isBefore(ymd20220701)) {
+        // 고용보험료 : 1.6% (각각 50%), ~22.06.30일 까지
+        _taxRateEmploymentInsurance = 0.016;
+      } else {
+        // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
+        _taxRateEmploymentInsurance = 0.018;
+      }
     }
   }
 
@@ -154,7 +162,7 @@ class MajorInsuranceCalculator {
 
     final double each = _taxRateEmploymentInsurance / 2;
 
-    int cost = (income * each).toInt();
+    int cost = (income * each).ceil();
 
     if (!onlyWorker) {
       double additionalTaxRate = 0.0025;
