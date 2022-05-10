@@ -202,6 +202,12 @@ class MajorInsuranceCalculator {
     return s;
   }
 
+  /// 도움말
+  /// [name]은 다음 값 중 하나
+  /// 'national-pension' : 국민연금
+  /// 'health-care' : 건강보험
+  /// 'long-term-care' : 장기요양보험
+  /// 'employment-insurance' : 고용보험
   String helpText(String name) {
     String text = '';
     final year = baseDate.year;
@@ -230,7 +236,7 @@ class MajorInsuranceCalculator {
         percent = _taxRateEmploymentInsurance * 100;
         final each = doubleToString(percent / 2, 1);
         text =
-            '$year년 기준 ${doubleToString(percent, 1)}%\n(근로자와 사업주 각각 $each% 부담)';
+            '$year년 $month월 기준 ${doubleToString(percent, 1)}%\n(근로자와 사업주 각각 $each% 부담)';
         break;
     }
 

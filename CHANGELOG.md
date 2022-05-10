@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.7 - 2022-05-10
+### Changed
+- 고용보험료 helpText 현재 월까지 표시되도록 수정
+
 ## 1.11.6 - 2022-03-25
 ### Added
 - 고용보험료 22년 7월 변경사항 계산 추가
