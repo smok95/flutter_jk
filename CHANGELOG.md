@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.8 - 2022-09-22
+### Added
+- NumPad 자판타입 추가 (전화기 / 계산기)
+
 ## 1.11.7 - 2022-05-10
 ### Changed
 - 고용보험료 helpText 현재 월까지 표시되도록 수정

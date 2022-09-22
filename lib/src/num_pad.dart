@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum KeyPadType {
+  telephone,
+  calculator,
+}
+
 /// NumberPad widget
 ///
 class NumPad extends StatelessWidget {
@@ -10,30 +15,40 @@ class NumPad extends StatelessWidget {
 
   /// Backspace widget, default(Icons.backspace_outlined)
   final Widget? backspaceWidget;
+  final KeyPadType keypadType;
 
-  const NumPad({
-    Key? key,
-    required this.onPressed,
-    this.height,
-    this.onClear,
-    this.onBackspace,
-    this.backspaceWidget,
-  }) : super(key: key);
+  const NumPad(
+      {Key? key,
+      required this.onPressed,
+      this.height,
+      this.onClear,
+      this.onBackspace,
+      this.backspaceWidget,
+      this.keypadType = KeyPadType.calculator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final children = <Widget>[];
+
+    if (keypadType == KeyPadType.calculator) {
+      children.add(Expanded(child: _buildRow('7', '8', '9')));
+      children.add(Expanded(child: _buildRow('4', '5', '6')));
+      children.add(Expanded(child: _buildRow('1', '2', '3')));
+    } else {
+      children.add(Expanded(child: _buildRow('1', '2', '3')));
+      children.add(Expanded(child: _buildRow('4', '5', '6')));
+      children.add(Expanded(child: _buildRow('7', '8', '9')));
+    }
+    children.add(Expanded(child: _buildRow('clear', '0', 'back')));
+
     return Container(
       height: height,
       padding: EdgeInsets.zero,
       margin: EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Expanded(child: _buildRow('1', '2', '3')),
-          Expanded(child: _buildRow('4', '5', '6')),
-          Expanded(child: _buildRow('7', '8', '9')),
-          Expanded(child: _buildRow('clear', '0', 'back'))
-        ],
+        children: children,
       ),
     );
   }
