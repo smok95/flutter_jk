@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_jk/flutter_jk.dart' as jk;
@@ -50,6 +52,26 @@ void main() {
     test('국민연금 계산', () {
       final result = calc2022.calcNationalPension(income, onlyWorker: true);
       expect(result, 135000);
+    });
+
+    test('복권당첨금 세금 계산(23.1.1일 이전)', () {
+      final ymd20221231 = DateTime(2022, 12, 31);
+      final calc = jk.IncomeTaxCalc(baseDate: ymd20221231);
+      int tax =
+          calc.calcOtherIncomeTax(50000, type: jk.OtherIncomeType.lottery);
+      expect(tax, 0);
+      tax = calc.calcOtherIncomeTax(2000000, type: jk.OtherIncomeType.lottery);
+      expect(tax, 400000);
+    });
+
+    test('복권당첨금 세금 계산(23.1.1일부터)', () {
+      final ymd20230101 = DateTime(2023, 1, 1);
+      final calc = jk.IncomeTaxCalc(baseDate: ymd20230101);
+      int tax =
+          calc.calcOtherIncomeTax(50000, type: jk.OtherIncomeType.lottery);
+      expect(tax, 0);
+      tax = calc.calcOtherIncomeTax(2000000, type: jk.OtherIncomeType.lottery);
+      expect(tax, 0);
     });
   });
 }

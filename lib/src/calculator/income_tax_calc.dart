@@ -5,6 +5,7 @@ enum OtherIncomeType {
   normal,
 
   /// 복권 당첨금과 승마투표권 등의 구매자가 받는 환급금
+  /// note!, 22.11.28일 현재는 복권, 승마,경품 등을 모두 lottery로 하고 있으나 항목별로 enum 분리가 필요함
   lottery,
 
   /// 연금계좌에서 발생하는 연금외 기타소득
@@ -84,6 +85,20 @@ class IncomeTaxCalc {
       case OtherIncomeType.lottery:
         final ymd20040101 = DateTime(2004, 1, 1);
         final ymd20070101 = DateTime(2007, 1, 1);
+        // 23.1.1일 복권당첨금 과세최저한도가 5만원 -> 200만원으로 변경됨. (지급분부터)
+        final ymd20230101 = DateTime(2023, 1, 1);
+
+        int taxStart = 0; // 과세최저한
+        if (baseDate.isBefore(ymd20230101)) {
+          // 23.1.1일 이전 (5만원)
+          taxStart = 50000;
+        } else {
+          // 23.1.1일 부터 (200만원)
+          taxStart = 2000000;
+        }
+
+        // 과세최저한도를 넘지 않는 경우 비과세
+        if (income <= taxStart) return 0;
 
         /// 세금 30% 적용되는 시작 당첨금
         var startPrizeTax30 = 0;
