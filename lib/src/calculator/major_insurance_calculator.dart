@@ -38,7 +38,7 @@ class MajorInsuranceCalculator {
       _taxRateNationalPension = 0.09;
       // 고용보험료 : 1.6% (각각 50%)
       _taxRateEmploymentInsurance = 0.016;
-    } else if (year >= 2022) {
+    } else if (year == 2022) {
       final ymd20220701 = DateTime(2022, 7, 1);
 
       // 2022년 기존
@@ -56,6 +56,16 @@ class MajorInsuranceCalculator {
         // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
         _taxRateEmploymentInsurance = 0.018;
       }
+    } else if (year >= 2023) {
+      // 2023년 기준(1.1~)
+      // 건강보험료: 7.09% (근로자: 3.545%, 사업주: 3.545%)
+      _taxRateHealthCare = 0.0709;
+      // 장기요양보험료: 12.81% (가입자 사업주 각각 50%)
+      _taxRateLongTermCare = 0.1281;
+      // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
+      _taxRateNationalPension = 0.09;
+      // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
+      _taxRateEmploymentInsurance = 0.018;
     }
   }
 
@@ -79,10 +89,8 @@ class MajorInsuranceCalculator {
       maximum = 5240000;
     } else {
       // 2022.7.1일 부터
-
-      // 2022.1.21일 현재 나온 정보가 없어, 기존 금액 그대로 일단 사용.
-      minimum = 330000;
-      maximum = 5240000;
+      minimum = 350000;
+      maximum = 5530000;
     }
 
     return [minimum, maximum];

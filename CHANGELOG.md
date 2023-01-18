@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.11.10 - 2023-01-18
+### Changed
+- 국민연금 기준소득월액 22년7월 기준값 뒤늦게 추가함
+- 건강보험(장기요양 포함) 23년 기준 적용
+
 ## 1.11.9 - 2022-11-28
 ### Added
 - 기타소득세(복권당첨금) 과세최저한도금액 변경(5만원 -> 200만원), 22년 세법걔정안 (23년 1월 1일 지급분부터 적용)
