@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.12.0 - 2024-08-28
+### Changed
+- 근로소득 간이세액표 24년 3월 1일자 추가
+
 ## 1.11.10 - 2023-01-18
 ### Changed
 - 국민연금 기준소득월액 22년7월 기준값 뒤늦게 추가함

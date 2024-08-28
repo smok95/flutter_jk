@@ -1,4 +1,5 @@
 import 'income_tax_table2020.dart';
+import 'income_tax_table2024.dart';
 
 enum OtherIncomeType {
   /// 일반적인 기타소득
@@ -24,12 +25,17 @@ class IncomeTaxCalc {
   IncomeTaxCalc({DateTime? baseDate})
       : this.baseDate = baseDate ?? DateTime.now() {
     final ymd20210218 = DateTime(2021, 2, 18);
+    final ymd20240301 = DateTime(2024, 3, 1); // 2024.08.28 added
 
     if (this.baseDate.isBefore(ymd20210218)) {
-      // 2021.02.17일 이후부터 2021년 기준적용됨.
+      // - 2021.02.17
       _calculator = _Calc2020();
-    } else {
+    } else if (this.baseDate.isBefore(ymd20240301)) {
+      // 2021.2.18 - 2024.02.29
       _calculator = _Calc2021();
+    } else {
+      // 2024.03.01 -
+      _calculator = _Calc2024();
     }
   }
 
@@ -167,15 +173,15 @@ class _Calc2020 extends IncomeTaxCalculator {
     } else if (1000 <= salary && salary < 1500) {
       // 100만원 이상 150만원 미만
       row = (salary - 1000) ~/ 5;
-      table = taxTable100to150;
+      table = IncomeTaxTable2020.tax100to150;
     } else if (1500 <= salary && salary < 3000) {
       // 150만원 이상 300만원 미만
       row = (salary - 1500) ~/ 10;
-      table = taxTable150to300;
+      table = IncomeTaxTable2020.tax150to300;
     } else if (3000 <= salary) {
       // 300만원 이상
       row = (salary - 3000) ~/ 20;
-      table = taxTable300to1000;
+      table = IncomeTaxTable2020.tax300to1000;
 
       // 1000만원을 초과하는 경우에는 테이블 마지막 세금표 사용
       if (row >= table.length) row = table.length - 1;
@@ -249,15 +255,15 @@ class _Calc2021 extends IncomeTaxCalculator {
     } else if (1000 <= salary && salary < 1500) {
       // 100만원 이상 150만원 미만
       row = (salary - 1000) ~/ 5;
-      table = taxTable100to150;
+      table = IncomeTaxTable2020.tax100to150;
     } else if (1500 <= salary && salary < 3000) {
       // 150만원 이상 300만원 미만
       row = (salary - 1500) ~/ 10;
-      table = taxTable150to300;
+      table = IncomeTaxTable2020.tax150to300;
     } else if (3000 <= salary) {
       // 300만원 이상
       row = (salary - 3000) ~/ 20;
-      table = taxTable300to1000;
+      table = IncomeTaxTable2020.tax300to1000;
 
       // 1000만원을 초과하는 경우에는 테이블 마지막 세금표 사용
       if (row >= table.length) row = table.length - 1;
@@ -310,6 +316,100 @@ class _Calc2021 extends IncomeTaxCalculator {
         return '공제대상가족의 수(부양가족수 + 7세 이상 20세 이하 자녀수)에 따라, ' +
             '2021년 국세청 근로소득 간이세액표를 기준으로 공제됩니다.' +
             '\n단, 연간 소득이 100만원을 초과하는 자는 부양가족 및 7세 이상 20세 이하 자녀에서 제외됩니다.\n' +
+            '또한 월급여가 106만원 미만인 경우에는 근로소득세가 없습니다.';
+      case 'local-income-tax':
+        return '근로소득세의 10%';
+      default:
+        return '';
+    }
+  }
+}
+
+class _Calc2024 extends IncomeTaxCalculator {
+  @override
+  int calc(final int income, final int dependents) {
+    // 1000원 단위
+    int salary = income ~/ 1000;
+    int row = 0;
+    int col = dependents - 1;
+    int additionalTax = 0;
+
+    late List<List<int>> table;
+    if (salary < 1000) {
+      // 100만원 미만
+      return 0;
+    } else if (1000 <= salary && salary < 1500) {
+      // 100만원 이상 150만원 미만
+      row = (salary - 1000) ~/ 5;
+      table = IncomeTaxTable2024.tax100to150;
+    } else if (1500 <= salary && salary < 3000) {
+      // 150만원 이상 300만원 미만
+      row = (salary - 1500) ~/ 10;
+      table = IncomeTaxTable2024.tax150to300;
+    } else if (3000 <= salary) {
+      // 300만원 이상
+      row = (salary - 3000) ~/ 20;
+      table = IncomeTaxTable2024.tax300to1000;
+
+      // 1000만원을 초과하는 경우에는 테이블 마지막 세금표 사용
+      if (row >= table.length) row = table.length - 1;
+
+      if (salary <= 10000) {
+        // 300만원 이상 1000만원 이하
+      } else if (10000 < salary && salary <= 14000) {
+        // 1000만원 초과 1400만원 이하
+        // (10,000천원인 경우의 해당 세액) + (10,000천원을 초과하는 금액에 98%를 곱한 금액의 35% 상당액) + (25,000원)
+        salary -= 10000;
+        additionalTax = (((salary.toDouble() * 0.98) * 0.35) * 1000).toInt();
+        additionalTax += 25000;
+      } else if (14000 < salary && salary <= 28000) {
+        // 1400만원 초과 2800만원 이하
+        // (10,000천원인 경우의 해당 세액) + (1,397,000원) + (14,000천원을 초과하는 금액에 98%를 곱한 금액의 38% 상당액)
+        salary -= 14000;
+        additionalTax =
+            1397000 + (((salary.toDouble() * 0.98) * 0.38) * 1000).toInt();
+      } else if (28000 < salary && salary <= 30000) {
+        // 2800만원 초과 3000만원 이하
+        // (10,000천원인 경우의 해당 세액) + (6,610,600원) + (28,000천원을 초과하는 금액에 98%를 곱한 금액의 40% 상당액)
+
+        salary -= 28000;
+        additionalTax =
+            6610600 + (((salary.toDouble() * 0.98) * 0.4) * 1000).toInt();
+      } else if (30000 < salary && salary <= 45000) {
+        // 3000만원 초과 4500만원 이하
+        // (10,000천원인 경우의 해당 세액) + (7,394,600원) + (30,000천원을 초과하는 금액의 40% 상당액)
+        salary -= 30000;
+        additionalTax = 7394600 + ((salary.toDouble() * 0.4) * 1000).toInt();
+      } else if (45000 < salary && salary <= 87000) {
+        // 4500만원 초과 8700만원 이하
+        // (10,000천원인 경우의 해당 세액) + (13,394,600원) + (45,000천원을 초과하는 금액의 42% 상당액)
+        salary -= 45000;
+        additionalTax = 13394600 + ((salary.toDouble() * 0.42) * 1000).toInt();
+      } else {
+        // 8700만원 초과
+        // (10,000천원인 경우의 해당 세액) + (31,034,600원) + (87,000천원을 초과하는 금액의 45% 상당액)
+        salary -= 87000;
+        additionalTax = 31034600 + ((salary.toDouble() * 0.45) * 1000).toInt();
+      }
+    }
+
+    // 공제대상가족의 수가 11명을 초과하는 경우
+    if (dependents > 11) {
+      final taxOf11 = calc(income, 11);
+      final tax = taxOf11 - (calc(income, 10) - taxOf11) * (dependents - 11);
+      return tax < 0 ? 0 : tax;
+    } else {
+      return table[row][col] + additionalTax;
+    }
+  }
+
+  @override
+  String helpText(String key) {
+    switch (key) {
+      case 'income-tax':
+        return '공제대상가족의 수(부양가족수 + 8세 이상 20세 이하 자녀수)에 따라, ' +
+            '2024년 국세청 근로소득 간이세액표를 기준으로 공제됩니다.' +
+            '\n단, 연간 소득이 100만원을 초과하는 자는 부양가족 및 8세 이상 20세 이하 자녀에서 제외됩니다.\n' +
             '또한 월급여가 106만원 미만인 경우에는 근로소득세가 없습니다.';
       case 'local-income-tax':
         return '근로소득세의 10%';
