@@ -17,53 +17,78 @@ class MajorInsuranceCalculator {
 
   MajorInsuranceCalculator({DateTime? baseDate})
       : this.baseDate = baseDate ?? DateTime.now() {
-    final year = this.baseDate.year;
-    if (year <= 2020) {
+    final dt = this.baseDate;
+    final y2021 = DateTime(2021, 1, 1);
+    final y2022 = DateTime(2022, 1, 1);
+    final y2022_07_01 = DateTime(2022, 7, 1);
+    final y2023 = DateTime(2023, 1, 1);
+    final y2024 = DateTime(2024, 1, 1);
+    final y2026 = DateTime(2026, 1, 1);
+
+    if(dt.isBefore(y2021)) {
       // 2020년 기준
       // 건강보험료 : 6.67% (근로자: 3.335%, 사업주: 3.335% 부담)
       _taxRateHealthCare = 0.0667;
-      // 장기요양보험료 : 10.25% (가입자 사업주 각각 50%)
+      // 장기요양보험료 : 건강보험료 대비 10.25% (가입자 사업주 각각 50%)
       _taxRateLongTermCare = 0.1025;
       // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
       _taxRateNationalPension = 0.09;
       // 고용보험료 : 1.6% (각각 50%)
       _taxRateEmploymentInsurance = 0.016;
-    } else if (year == 2021) {
+    } else if (dt.isBefore(y2022)) {
       // 2021년 기준
       // 건강보험료 : 6.86% (근로자: 3.43%, 사업주: 3.44% 부담)
       _taxRateHealthCare = 0.0686;
-      // 장기요양보험료 : 11.52% (가입자 사업주 각각 50%)
+      // 장기요양보험료 : 건강보험료 대비 11.52% (가입자 사업주 각각 50%)
       _taxRateLongTermCare = 0.1152;
       // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
       _taxRateNationalPension = 0.09;
       // 고용보험료 : 1.6% (각각 50%)
       _taxRateEmploymentInsurance = 0.016;
-    } else if (year == 2022) {
-      final ymd20220701 = DateTime(2022, 7, 1);
-
+    } else if (dt.isBefore(y2023)) {
       // 2022년 기존
       // 건강보험료 : 6.99% (근로자: 3.495%, 사업주: 3.495% 부담)
       _taxRateHealthCare = 0.0699;
-      // 장기요양보험료 : 12.27% (가입자 사업주 각각 50%)
+      // 장기요양보험료 : 건강보험료 대비 12.27% (가입자 사업주 각각 50%)
       _taxRateLongTermCare = 0.1227;
       // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
       _taxRateNationalPension = 0.09;
 
-      if (this.baseDate.isBefore(ymd20220701)) {
+      if (dt.isBefore(y2022_07_01)) {
         // 고용보험료 : 1.6% (각각 50%), ~22.06.30일 까지
         _taxRateEmploymentInsurance = 0.016;
       } else {
         // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
         _taxRateEmploymentInsurance = 0.018;
       }
-    } else if (year >= 2023) {
+    } else if (dt.isBefore(y2024)) {
       // 2023년 기준(1.1~)
       // 건강보험료: 7.09% (근로자: 3.545%, 사업주: 3.545%)
       _taxRateHealthCare = 0.0709;
-      // 장기요양보험료: 12.81% (가입자 사업주 각각 50%)
+      // 장기요양보험료: 건강보험료 대비 12.81% (가입자 사업주 각각 50%)
       _taxRateLongTermCare = 0.1281;
       // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
       _taxRateNationalPension = 0.09;
+      // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
+      _taxRateEmploymentInsurance = 0.018;
+    } else if (dt.isBefore(y2026)) {
+      // 2024~2025년 기준(1.1~)
+      // 건강보험료: 7.09% (근로자: 3.545%, 사업주: 3.545%)
+      _taxRateHealthCare = 0.0709;
+      // 장기요양보험료: 건강보험료 대비 12.95% (가입자 사업주 각각 50%)
+      _taxRateLongTermCare = 0.1295;
+      // 국민연금 : 9% (근로자: 4.5%, 사업주: 4.5%)
+      _taxRateNationalPension = 0.09;
+      // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
+      _taxRateEmploymentInsurance = 0.018;
+    } else {
+      // 2026년 기준(1.1~)
+      // 건강보험료: 7.19% (근로자: 3.595%, 사업주: 3.595%)
+      _taxRateHealthCare = 0.0719;
+      // 장기요양보험료: 건강보험료 대비 13.14% (가입자 사업주 각각 50%)
+      _taxRateLongTermCare = 0.1314;
+      // 국민연금 : 9.5% (근로자: 4.75%, 사업주: 4.75%)
+      _taxRateNationalPension = 0.095;
       // 고용보험료 : 1.8% (각각 50%), 22.07.01일 부터
       _taxRateEmploymentInsurance = 0.018;
     }
@@ -72,12 +97,15 @@ class MajorInsuranceCalculator {
   /// 기준소득월액 확인
   /// [baseDate] 기준일자
   /// returns : [최소 기준소득월액, 최대 기준소득월액]
-  static List baseIncome(DateTime baseDate) {
+  static List<int> baseIncome(DateTime baseDate) {
     int minimum = 320000; // 기준소득액 (최소)
     int maximum = 5030000; // 기준소득액 (최대)
 
     final ymd20210701 = DateTime(2021, 7, 1);
     final ymd20220701 = DateTime(2022, 7, 1);
+    final ymd20230701 = DateTime(2023, 7, 1);
+    final ymd20240701 = DateTime(2024, 7, 1);
+    final ymd20250701 = DateTime(2025, 7, 1);
 
     if (baseDate.isBefore(ymd20210701)) {
       // 2021.7.1일 이전이면 2020년 기준으로
@@ -87,10 +115,22 @@ class MajorInsuranceCalculator {
       // 2022.7.1일 이전이면 2021년 기준으로
       minimum = 330000;
       maximum = 5240000;
-    } else {
+    } else if (baseDate.isBefore(ymd20230701)) {
       // 2022.7.1일 부터
       minimum = 350000;
       maximum = 5530000;
+    } else if (baseDate.isBefore(ymd20240701)) {
+      // 2023.07.1일 부터
+      minimum = 370000;
+      maximum = 5900000;
+    } else if (baseDate.isBefore(ymd20250701)) {
+      // 2024.7.1일 부터
+      minimum = 390000;
+      maximum = 6170000;
+    } else {
+      // 2025.7.1일 부터
+      minimum = 400000;
+      maximum = 6370000;
     }
 
     return [minimum, maximum];
@@ -130,7 +170,7 @@ class MajorInsuranceCalculator {
   /// 소득월액을 [income]에 입력한다.
   ///
   /// [건강보험료, 장기요양보험료] 형식으로 리턴된다.
-  List calcHealthInsurancePremium(int income, {bool onlyWorker = false}) {
+  List<int> calcHealthInsurancePremium(int income, {bool onlyWorker = false}) {
     if (income <= 0) return [0, 0];
 
     /// 건강보험료

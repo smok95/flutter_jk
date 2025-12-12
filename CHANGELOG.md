@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.13.0 - 2025-12-12
+### Chnaged
+- 4대보험 요율 25년도까지 최신 기준 적용
+
 ## 1.12.0 - 2024-08-28
 ### Changed
 - 근로소득 간이세액표 24년 3월 1일자 추가

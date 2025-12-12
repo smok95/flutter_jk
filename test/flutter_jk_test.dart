@@ -49,11 +49,9 @@ void main() {
     final year2022 = DateTime(2022, 6, 1);
     final ymd20220701 = DateTime(2022, 7, 1);
     final ymd20230101 = DateTime(2023, 1, 1);
-    final ymd20240301 = DateTime(2024, 3, 1);
     final calc2022 = jk.MajorInsuranceCalculator(baseDate: year2022);
     final calc20220701 = jk.MajorInsuranceCalculator(baseDate: ymd20220701);
     final calc20230101 = jk.MajorInsuranceCalculator(baseDate: ymd20230101);
-    final calc20240301 = jk.MajorInsuranceCalculator(baseDate: ymd20240301);
 
     /// 월소득 300만원 기준
     /// 고용보험료 24000원
