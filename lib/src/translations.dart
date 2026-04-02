@@ -91,6 +91,7 @@ class Translations {
       'updated date': 'Updated',
       'vibrate': 'Vibrate',
       'view code': 'View code',
+      'qr_scan': 'QR Scan',
     },
     'ko_KR': {
       'Are you sure you want to clear history?': '정말 모든 기록을 삭제하시겠습니까?',
@@ -152,6 +153,7 @@ class Translations {
       'updated date': '업데이트 일자',
       'vibrate': '진동 알림',
       'view code': '코드 보기',
+      'qr_scan': 'QR 스캔',
     },
     'pl_PL': {
       // Polish
@@ -217,6 +219,7 @@ class Translations {
       'updated date': 'Updated',
       'vibrate': 'Vibrate',
       'view code': 'View code',
+      'qr_scan': 'Skanuj QR',
     },
   };
 }

@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased - 
 
+## 1.14.0 - 2026-04-03
+### Added
+- 다국어 번역에 qr_scan 키 추가 (ko_KR: "QR 스캔", en_US: "QR Scan", pl_PL: "Skanuj QR")
+
 ## 1.13.0 - 2025-12-12
 ### Chnaged
 - 4대보험 요율 25년도까지 최신 기준 적용
